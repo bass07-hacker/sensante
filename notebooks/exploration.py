@@ -34,3 +34,9 @@ for diag, temp in temp_by_diag.items():
 print(f"\n{'=' * 50}")
 print("Exploration terminee !")
 print(f"{'=' * 50}")
+
+print(f"\n{'=' * 50}")
+print(" nombre de patients par sexe et par diagnostic !")
+print(f"\n{'=' * 50}")
+print(df.groupby(["sexe", "diagnostic"]).size())
+print(f"{'=' * 50}")
