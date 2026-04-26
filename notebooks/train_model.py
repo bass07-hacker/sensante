@@ -138,3 +138,124 @@ print (f"\n Probabilites par classe :")
 for classe, proba in zip(model_loaded.classes_, probas):
  bar = '#' * int(proba * 30)
 print (f" {classe:8s} : {proba :.1%} {bar}")
+
+importances = model.feature_importances_
+for name , imp in sorted(zip(feature_cols , importances),
+        key=lambda x: x[1] , reverse=True):
+    print (f" {name:20s} : {imp:.3f}")
+
+# Un nouveau patient arrive au centre de sante de Medina
+patient_adulte = {
+'age': 40 ,
+'sexe': 'M',
+'temperature': 38.2 ,
+'tension_sys': 110 ,
+'toux': False ,
+'fatigue': True ,
+'maux_tete': True ,
+'region': 'Dakar'
+}
+# Encoder les valeurs categoriques
+sexe_enc = le_sexe_loaded.transform([patient_adulte['sexe']])[0]
+region_enc = le_region_loaded.transform([patient_adulte['region']])[0]
+# Preparer le vecteur de features
+features = [
+patient_adulte['age'] ,
+sexe_enc ,
+patient_adulte['temperature'] ,
+patient_adulte['tension_sys'] ,
+int(patient_adulte['toux']) ,
+int(patient_adulte['fatigue']) ,
+int(patient_adulte['maux_tete']) ,
+region_enc
+]
+# Predire
+diagnostic = model_loaded.predict([ features ]) [0]
+probas = model_loaded.predict_proba([ features ]) [0]
+proba_max = probas.max ()
+print (f"\n- - - Resultat du pre - diagnostic ---")
+print (f" Patient : {patient_adulte['sexe']} , {patient_adulte['age']} ans")
+print (f" Diagnostic : {diagnostic }")
+print (f" Probabilite : {proba_max:.1%} ")
+print (f"\n Probabilites par classe :")
+for classe, proba in zip(model_loaded.classes_, probas):
+ bar = '#' * int(proba * 30)
+print (f" {classe:8s} : {proba :.1%} {bar}")
+
+
+# Un nouveau patient arrive au centre de sante de Medina
+patient_adulte = {
+'age': 40 ,
+'sexe': 'M',
+'temperature': 39 ,
+'tension_sys': 110 ,
+'toux': False ,
+'fatigue': True ,
+'maux_tete': True ,
+'region': 'Dakar'
+}
+# Encoder les valeurs categoriques
+sexe_enc = le_sexe_loaded.transform([patient_adulte['sexe']])[0]
+region_enc = le_region_loaded.transform([patient_adulte['region']])[0]
+# Preparer le vecteur de features
+features = [
+patient_adulte['age'] ,
+sexe_enc,
+patient_adulte['temperature'] ,
+patient_adulte['tension_sys'] ,
+int(patient_adulte['toux']) ,
+int(patient_adulte['fatigue']) ,
+int(patient_adulte['maux_tete']) ,
+region_enc
+]
+# Predire
+diagnostic = model_loaded.predict([ features ]) [0]
+probas = model_loaded.predict_proba([ features ]) [0]
+proba_max = probas.max ()
+print (f"\n- - - Resultat du pre - diagnostic ---")
+print (f" Patient : {patient_adulte['sexe']} , {patient_adulte['age']} ans")
+print (f" Diagnostic : {diagnostic }")
+print (f" Probabilite : {proba_max:.1%} ")
+print (f"\n Probabilites par classe :")
+for classe, proba in zip(model_loaded.classes_, probas):
+ bar = '#' * int(proba * 30)
+print (f" {classe:8s} : {proba :.1%} {bar}")
+
+
+# Un nouveau patient arrive au centre de sante de Medina
+patient_age = {
+'age': 69 ,
+'sexe': 'M',
+'temperature': 37.6 ,
+'tension_sys': 110 ,
+'toux': True ,
+'fatigue': True ,
+'maux_tete': True ,
+'region': 'Dakar'
+}
+# Encoder les valeurs categoriques
+sexe_enc = le_sexe_loaded.transform([patient_age['sexe']])[0]
+region_enc = le_region_loaded.transform([patient_age['region']])[0]
+# Preparer le vecteur de features
+features = [
+patient_age['age'] ,
+sexe_enc ,
+patient_age['temperature'] ,
+patient_age['tension_sys'] ,
+int(patient_age['toux']) ,
+int(patient_age['fatigue']) ,
+int(patient_age['maux_tete']) ,
+region_enc
+]
+# Predire
+diagnostic = model_loaded.predict([ features ]) [0]
+probas = model_loaded.predict_proba([ features ]) [0]
+proba_max = probas.max ()
+print (f"\n- - - Resultat du pre - diagnostic ---")
+print (f" Patient : {patient_age['sexe']} , {patient_age['age']} ans")
+print (f" Diagnostic : {diagnostic }")
+print (f" Probabilite : {proba_max:.1%} ")
+print (f"\n Probabilites par classe :")
+for classe, proba in zip(model_loaded.classes_, probas):
+ bar = '#' * int(proba * 30)
+print (f" {classe:8s} : {proba :.1%} {bar}")
