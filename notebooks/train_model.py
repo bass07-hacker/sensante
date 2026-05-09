@@ -145,28 +145,28 @@ for name , imp in sorted(zip(feature_cols , importances),
     print (f" {name:20s} : {imp:.3f}")
 
 # Un nouveau patient arrive au centre de sante de Medina
-patient_adulte = {
-'age': 40 ,
+patient_jeune = {
+'age': 17 ,
 'sexe': 'M',
-'temperature': 38.2 ,
+'temperature': 37 ,
 'tension_sys': 110 ,
 'toux': False ,
-'fatigue': True ,
-'maux_tete': True ,
+'fatigue': False ,
+'maux_tete': False ,
 'region': 'Dakar'
 }
 # Encoder les valeurs categoriques
-sexe_enc = le_sexe_loaded.transform([patient_adulte['sexe']])[0]
-region_enc = le_region_loaded.transform([patient_adulte['region']])[0]
+sexe_enc = le_sexe_loaded.transform([patient_jeune['sexe']])[0]
+region_enc = le_region_loaded.transform([patient_jeune['region']])[0]
 # Preparer le vecteur de features
 features = [
-patient_adulte['age'] ,
+patient_jeune['age'] ,
 sexe_enc ,
-patient_adulte['temperature'] ,
-patient_adulte['tension_sys'] ,
-int(patient_adulte['toux']) ,
-int(patient_adulte['fatigue']) ,
-int(patient_adulte['maux_tete']) ,
+patient_jeune['temperature'] ,
+patient_jeune['tension_sys'] ,
+int(patient_jeune['toux']) ,
+int(patient_jeune['fatigue']) ,
+int(patient_jeune['maux_tete']) ,
 region_enc
 ]
 # Predire
@@ -174,7 +174,7 @@ diagnostic = model_loaded.predict([ features ]) [0]
 probas = model_loaded.predict_proba([ features ]) [0]
 proba_max = probas.max ()
 print (f"\n- - - Resultat du pre - diagnostic ---")
-print (f" Patient : {patient_adulte['sexe']} , {patient_adulte['age']} ans")
+print (f" Patient : {patient_jeune['sexe']} , {patient_jeune['age']} ans")
 print (f" Diagnostic : {diagnostic }")
 print (f" Probabilite : {proba_max:.1%} ")
 print (f"\n Probabilites par classe :")
@@ -187,7 +187,7 @@ print (f" {classe:8s} : {proba :.1%} {bar}")
 patient_adulte = {
 'age': 40 ,
 'sexe': 'M',
-'temperature': 39 ,
+'temperature': 39.5 ,
 'tension_sys': 110 ,
 'toux': False ,
 'fatigue': True ,
